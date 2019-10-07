@@ -12,4 +12,6 @@ let postgresDatastore = {
   }
 };
 
-export { postgresDatastore };
+let postgresRepository = makeSqlRepository(postgresDatastore);
+
+export { postgresRepository };

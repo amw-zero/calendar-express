@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { makeServer, makeSqlRepository } from 'calendar-behavior/mod.babel.mjs';
-import { postgresDatastore } from './db.mjs';
+import { postgresRepository } from './db.mjs';
 import path from 'path';
 
 const app = express()
@@ -10,8 +10,7 @@ const port = 3002
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'build')));
 
-let repository = makeSqlRepository(postgresDatastore);
-let server = makeServer(repository);
+let server = makeServer(postgresRepository);
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
