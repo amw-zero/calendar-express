@@ -7,8 +7,8 @@ let postgresDatastore = {
   async setup(query) {
     await db.none(query);
   },
-  execute(query, ...args) {
-    return db.any(query, args);
+  execute(query) {
+    return db.any(query);
   }
 };
 

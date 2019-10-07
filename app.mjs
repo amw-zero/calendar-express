@@ -16,6 +16,12 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
+app.get('/events', async (req, res) => {
+  server.viewEvents()
+    .then((events) => res.send(events))
+    .catch((err) => res.send(err.message));
+});
+
 app.post('/events', async (req, res) => {
   let { name, date } = req.body;
   server.addEvent(name, date)
